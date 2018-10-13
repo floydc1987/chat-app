@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RoomForm from './RoomForm.jsx'
 
 
 class RoomList extends Component {
@@ -24,29 +25,14 @@ class RoomList extends Component {
 
 	render() {
 		return(
-			this.state.rooms.map((room) => room.name)
+			<div>
+				<ul>
+					{this.state.rooms.map((room) => <li>{room.name}</li>)}
+				</ul>
+				<RoomForm roomsRef={this.roomsRef}/>
+			</div>
 		);
-
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 export default RoomList;
