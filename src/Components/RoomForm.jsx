@@ -21,7 +21,8 @@ class RoomForm extends Component {
 			return;
 		}
     this.props.roomsRef.push({
-		  name: this.state.value
+		  name: this.state.value,
+      messages: []
 		});
 		this.setState({value: ''});
   }
