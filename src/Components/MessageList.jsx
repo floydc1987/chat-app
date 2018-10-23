@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import RoomForm from './RoomForm.jsx';
 
 class MessageList extends Component {
 	constructor(props) {
@@ -27,7 +26,7 @@ class MessageList extends Component {
 		return(
 			<div>
 				<ol>
-					{this.state.messages.filter((message) => this.props.activeRoom.key == message.roomId).map((message) => <li>{message.content}</li>)}
+					{this.state.messages.filter((message) => this.props.activeRoom.key === message.roomId).map((message) => <li key={message.key}>{message.content}</li>)}
 				</ol>
 			</div>
 		);

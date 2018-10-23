@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import RoomForm from './RoomForm.jsx';
 import './../RoomList.css';
-import MessageList from './MessageList.jsx';
-
 
 
 class RoomList extends Component {
@@ -28,7 +26,7 @@ class RoomList extends Component {
 		return(
 			<div>
 				<ul>
-					{this.state.rooms.map((room) => <li onClick={() => this.props.setActiveRoom(room)} className={this.props.activeRoom == room ? 'highlight': ''}>{room.name}</li>)}
+					{this.state.rooms.map((room) => <li key={room.key} onClick={() => this.props.setActiveRoom(room)} className={this.props.activeRoom === room ? 'highlight': ''}>{room.name}</li>)}
 				</ul>
 				<RoomForm roomsRef={this.roomsRef}/>
 			</div>

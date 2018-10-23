@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './Components/RoomList.jsx';
-import RoomForm from './Components/RoomForm.jsx'
 import MessageList from './Components/MessageList.jsx';
 import Authentication from './Components/Authentication.jsx';
 
@@ -54,7 +52,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.user)
     return (
       <div className="App">
         <Authentication firebase={firebase} user={this.state.user}/>
