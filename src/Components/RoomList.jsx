@@ -25,11 +25,10 @@ class RoomList extends Component {
 	}
 
 	render() {
-		console.log(this.props.activeRoom)
 		return(
 			<div>
 				<ul>
-					{this.state.rooms.map((room) => <li onClick={() => this.props.handler(room)} className={this.props.activeRoom == room ? 'highlight': ''}>{room.name}</li>)}
+					{this.state.rooms.map((room) => <li onClick={() => this.props.setActiveRoom(room)} className={this.props.activeRoom == room ? 'highlight': ''}>{room.name}</li>)}
 				</ul>
 				<RoomForm roomsRef={this.roomsRef}/>
 			</div>

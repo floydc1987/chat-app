@@ -5,14 +5,15 @@ import * as firebase from 'firebase';
 import RoomList from './Components/RoomList.jsx';
 import RoomForm from './Components/RoomForm.jsx'
 import MessageList from './Components/MessageList.jsx';
-
+import Authentication from './Components/Authentication.jsx';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activeRoom: null
+      activeRoom: null,
+      user: null
     };
 
     var config = {
@@ -21,22 +22,43 @@ class App extends Component {
       databaseURL: "https://chat-app-ef3c3.firebaseio.com",
       storageBucket: "gs://chat-app-ef3c3.appspot.com"
     };
-    firebase.initializeApp(config);
 
-    this.handler = this.handler.bind(this)
+    firebase.initializeApp(config);
+    this.setActiveRoom = this.setActiveRoom.bind(this)
+    this.setUser = this.setUser.bind(this)
+
+    firebase.auth().getRedirectResult().then(this.setUser)
+    firebase.auth().onAuthStateChanged( user => {
+      if(user == null) {
+        this.removeUser();
+      }
+    });
   }
 
-  handler(room) {
+  removeUser() {
+    this.setState({
+      user: null
+    })
+  }
+
+  setUser(result) {
+    this.setState({
+      user: result.user
+    })
+  }
+
+  setActiveRoom(room) {
     this.setState({
       activeRoom: room
     })
   }
 
   render() {
-    console.log(this.state.activeRoom)
+    console.log(this.state.user)
     return (
       <div className="App">
-        <RoomList firebase={firebase} handler={this.handler} activeRoom={this.state.activeRoom}/>
+        <Authentication firebase={firebase} user={this.state.user}/>
+        <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} activeRoom={this.state.activeRoom}/>
         <MessageList firebase={firebase} activeRoom={this.state.activeRoom}/>
       </div>
     );
