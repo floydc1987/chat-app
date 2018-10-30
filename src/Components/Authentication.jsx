@@ -19,18 +19,15 @@ class Authentication extends Component {
   }
 
   render() {
-  	//variables
-  	//set in the if else
-  	//1 for onclick function, 1 for button text, 1 for displayName
   	var clickFunction;
   	var buttonName;
   	var displayName;
 
   	if(this.props.user == null) {
-  		clickFunction=this.login;
+  		clickFunction = this.login;
   		buttonName = "Login";
   	} else {
-  		clickFunction=this.logout;
+  		clickFunction = this.logout;
   		buttonName = "log Out";
   		displayName = this.props.user.displayName;
   	}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class RoomForm extends Component {
+class MessageForm extends Component {
 	constructor(props) {
   	super(props);
   	this.state = {
@@ -20,8 +20,11 @@ class RoomForm extends Component {
   	if (this.state.value === '') {
 			return;
 		}
-    this.props.roomsRef.push({
-		  name: this.state.value
+    this.props.messagesRef.push({
+		  content: this.state.value,
+      roomId: this.props.activeRoomKey,
+      sentAt: new Date().getTime(),
+      username: this.props.user.displayName
 		});
 		this.setState({value: ''});
   }
@@ -31,8 +34,8 @@ class RoomForm extends Component {
 		return(
 			<form onSubmit={this.handleSubmit}>
         <label>
-          Chatroom Name:{' '}
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          Message:{' '}
+          <input type="text" value={this.state.value} onChange={this.handleChange} disabled={this.props.user == null}/>
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -44,8 +47,4 @@ class RoomForm extends Component {
 
 
 
-
-
-
-
-export default RoomForm;
+export default MessageForm;
