@@ -31,7 +31,7 @@ class RoomList extends Component {
 				<RoomForm roomsRef={this.roomsRef}/>
 			</div>
 		);
-	}
+	}	
 }
 
 export default RoomList;

@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import RoomList from './Components/RoomList.jsx';
 import MessageList from './Components/MessageList.jsx';
 import Authentication from './Components/Authentication.jsx';
+import DeleteButton from './Components/DeleteButton.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class App extends Component {
 
     this.state = {
       activeRoom: null,
-      user: null
+      user: null,
     };
 
     var config = {
@@ -43,7 +44,6 @@ class App extends Component {
     this.setState({
       user: result.user
     })
-    console.log(result.user);
   }
 
   setActiveRoom(room) {
@@ -53,12 +53,13 @@ class App extends Component {
   }
 
 
+
   render() {
     return (
       <div className="App">
         <Authentication firebase={firebase} user={this.state.user}/>
         <RoomList firebase={firebase} setActiveRoom={this.setActiveRoom} activeRoom={this.state.activeRoom}/>
-        <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user}/>
+        <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user} />
       </div>
     );
   }

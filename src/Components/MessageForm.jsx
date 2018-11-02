@@ -40,7 +40,6 @@ class MessageForm extends Component {
         <input type="submit" value="Submit" />
       </form>
 		);
-
 	}
  };
 

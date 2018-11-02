@@ -43,9 +43,4 @@ class RoomForm extends Component {
 
 
 
-
-
-
-
-
 export default RoomForm;
